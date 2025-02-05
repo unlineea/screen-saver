@@ -463,17 +463,13 @@ class MainViewModel: ViewModel() {
 
             val underDog = checkUnderDog()
             winnerType.value = underDog
-            viewModelScope.launch {
-                deleteButUnderDog(underDog = underDog)
-            }
+            deleteButUnderDog(underDog = underDog)
         }
     }
 
     private fun deleteButUnderDog(underDog: GameObjectType) {
-        rockPaperScissorsList.forEach{ gameObject ->
-            if(gameObject.type != underDog) {
-                rockPaperScissorsList.remove(gameObject)
-            }
+        rockPaperScissorsList.removeAll{
+            it.type != underDog
         }
     }
     private fun startTimer() {
